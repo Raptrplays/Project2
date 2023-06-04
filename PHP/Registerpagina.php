@@ -20,7 +20,9 @@
             </ul>
         </nav>
 
-        Maak een nieuw account aan:
+    </header>
+    
+    Maak een nieuw account aan:
         <br>
         <div class="container">
             <form action="form">
@@ -34,6 +36,5 @@
 
 
         </form>
-    </header>
 </body>
 </html>
