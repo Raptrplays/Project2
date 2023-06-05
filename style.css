@@ -2,8 +2,8 @@
     margin: 0%;
     padding: 0%;
     font-family: 'Roboto Slab', serif;
+    background-color: #1D1D1D;
 }
-
 
 .navbar {
     background-color: #1D1D1D;
@@ -30,9 +30,6 @@
     margin-left: 20px;
 }
 
-.navbar-links li:first-child {
-    margin-left: 0;
-}
 
 .navbar-links li a {
     color: #FFFFFF;
@@ -47,13 +44,48 @@
 
 .navbar-links li a.button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
-.navimg{
+.navimg {
     width: 200px;
     height: 80px;
 }
 
-.img2{
-    height: 100%;
+.tekst h1 {
+    color: #EE4D2F;
+}
+
+.tekst h3 {
+    color: #F9EFED;
+}
+
+.tekst {
+    margin-left: 150px;
+    margin-top: 50px;
+}
+
+.tekst button {
+    background-color: #EE4D2F;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+
+.tekst button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+footer{
+    background-color: #434343;
+    height: 300px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+footer ul{
+    list-style: none;
 }
