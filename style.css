@@ -60,6 +60,10 @@
     margin-top: 50px;
 }
 
+.tekst a{
+    color: #FFFFFF;
+}
+
 .tekst button {
     background-color: #EE4D2F;
     padding: 10px 20px;
