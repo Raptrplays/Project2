@@ -2,7 +2,6 @@
     margin: 0%;
     padding: 0%;
     font-family: 'Roboto Slab', serif;
-    background-color: #1D1D1D;
 }
 
 .navbar {
@@ -56,10 +55,6 @@
     color: #EE4D2F;
 }
 
-.tekst h3 {
-    color: #F9EFED;
-}
-
 .tekst {
     margin-left: 150px;
     margin-top: 50px;
@@ -72,6 +67,7 @@
     cursor: pointer;
     color: #FFFFFF;
     margin-top: 10px;
+    border: 0;
 }
 
 .tekst button:hover {
@@ -79,13 +75,37 @@
     cursor: pointer;
 }
 
-footer{
-    background-color: #434343;
-    height: 300px;
-    text-align: center;
-    color: #FFFFFF;
+.footerlinks {
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+    background-color: #1D1D1D;
+    height: 100px;
+    padding-top: 20px;
 }
 
-footer ul{
+footer {
+    text-align: center;
+    background-color: #1D1D1D
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+
+footer ul li {
     list-style: none;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+footer ul li a:hover {
+    opacity: 0.8;
 }
