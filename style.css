@@ -109,3 +109,11 @@ footer ul li a {
 footer ul li a:hover {
     opacity: 0.8;
 }
+
+.menu {
+    width: 30px;
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+    display: none;
+  }
