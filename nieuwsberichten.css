@@ -56,10 +56,8 @@
     border-radius: 5px;
 }
 
-.article h2 {
+.article h1 {
     color: #EE4D2F;
-    font-size: 20px;
-    margin-top: 0;
 }
 
 .article p {
@@ -84,10 +82,10 @@
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0px 200px 0px 200px;
 }
 
 .footerlinks {
@@ -123,4 +121,9 @@ footer ul li a {
 
 footer ul li a:hover {
     opacity: 0.8;
+}
+
+.eind
+{
+    color: grey;
 }
