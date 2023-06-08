@@ -4,6 +4,10 @@
     font-family: 'Roboto Slab', serif;
 }
 
+body{
+    background-color: #e0e7ea;
+}
+
 .navbar {
     background-color: #1D1D1D;
     display: flex;
