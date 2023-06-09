@@ -18,8 +18,8 @@
             <a href="#"><img class="navimg" src="images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
         </div>
         <ul class="navbar-links">
-            <li><a href="../Html/index.html">Home</a></li>
-            <li><a href="../Html/nieuwsberichten.html">Nieuwsberichten</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../nieuwsberichten.html">Nieuwsberichten</a></li>
             <li><a href="#">Leden</a></li>
             <li><a href="#">Standpunten</a></li>
             <li><a href="#">Doneren</a></li>
