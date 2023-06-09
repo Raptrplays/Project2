@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar">
         <div class="navbar-logo">
-            <a href="#"><img class="navimg" src="images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
+            <a href="#"><img class="navimg" src="../images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
         </div>
         <ul class="navbar-links">
             <li><a href="../index.html">Home</a></li>
