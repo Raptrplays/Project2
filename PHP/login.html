@@ -20,10 +20,10 @@
         <ul class="navbar-links">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../nieuwsberichten.html">Nieuwsberichten</a></li>
-            <li><a href="#">Leden</a></li>
-            <li><a href="#">Standpunten</a></li>
-            <li><a href="#">Doneren</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="../leden.html">Leden</a></li>
+            <li><a href="../standpunten.html">Standpunten</a></li>
+            <li><a href="../doneren.html">Doneren</a></li>
+            <li><a href="../contact.html">Contact</a></li>
             <li><a href="Main.php" class="button">Lid worden</a></li>
         </ul>
     </nav>
