@@ -56,7 +56,7 @@ body{
 }
 
 .article {
-    padding: 20px;
+    padding: 50px 100px;
     border-radius: 5px;
 }
 
@@ -89,7 +89,6 @@ body{
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 0px 200px 0px 200px;
 }
 
 .footerlinks {
@@ -103,7 +102,7 @@ body{
 
 footer {
     text-align: center;
-    background-color: #1D1D1D
+    background-color: #1D1D1D;
 }
 
 footer ul {
@@ -127,7 +126,7 @@ footer ul li a:hover {
     opacity: 0.8;
 }
 
-.eind
-{
-    color: grey;
+
+h2{
+    display: none;
 }
