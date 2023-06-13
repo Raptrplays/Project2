@@ -24,7 +24,7 @@ $DBnieuws = new DBnieuws();
         </div>
         <ul class="navbar-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="nieuwsberichten.html">Nieuwsberichten</a></li>
+            <li><a href="nieuwsberichten.php">Nieuwsberichten</a></li>
             <li><a href="leden.html">Leden</a></li>
             <li><a href="standpunten.html">Standpunten</a></li>
             <li><a href="doneren.html">Doneren</a></li>
@@ -43,7 +43,22 @@ $DBnieuws = new DBnieuws();
     <h1><?= $row['Titel']; ?></h1>
     <p><?= $row['Tekst']; ?></p>
     <br>
+
+<form id="comment-form">
+  <div class="form-group">
+    <label for="comment">Reactie:</label>
+    <textarea id="comment" name="comment" required></textarea>
+  </div>
+  <div id="extra-buttons" class="form-group">
+    <button id="edit-comment" type="button">Bewerk reactie</button>
+    <button id="delete-comment" type="button">Verwijder reactie</button>
+  </div>
+  <button type="submit">Plaats reactie</button>
+</form>
+<br>
+
     <hr>
+
 </div>
     <?php
         }

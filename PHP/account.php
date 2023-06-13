@@ -19,7 +19,7 @@
         </div>
         <ul class="navbar-links">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="../nieuwsberichten.html">Nieuwsberichten</a></li>
+            <li><a href="../nieuwsberichten.php">Nieuwsberichten</a></li>
             <li><a href="#">Leden</a></li>
             <li><a href="#">Standpunten</a></li>
             <li><a href="#">Doneren</a></li>

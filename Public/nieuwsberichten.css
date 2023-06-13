@@ -4,7 +4,7 @@
     font-family: 'Roboto Slab', serif;
 }
 
-body{
+body {
     background-color: #e0e7ea;
 }
 
@@ -127,6 +127,46 @@ footer ul li a:hover {
 }
 
 
-h2{
+h2 {
     display: none;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #EE4D2F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+#extra-buttons {
+    display: none;
+}
+
+#extra-buttons button {
+    margin-right: 10px;
 }

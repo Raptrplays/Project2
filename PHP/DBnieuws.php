@@ -1,7 +1,7 @@
 <?php
 class DBnieuws
 {
-    private $dataSource = "mysql:dbname=project2;host=localhost;";
+    private $dataSource = "mysql:dbname=eindproject;host=localhost;";
     private $userName = "root";
     private $password = "";
 
