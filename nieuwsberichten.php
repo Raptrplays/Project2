@@ -33,6 +33,13 @@ $DBnieuws = new DBnieuws();
         </ul>
     </nav>
 
+    <?php
+    if (isset($_POST['submit'])) 
+    {
+        $dbHandler->reactieMaken($_POST['Tekst'], $_POST['CommentId']);
+    }
+    ?>
+
 <div class="container">
     <?php
         $rows = $DBnieuws->selectAll();
@@ -44,16 +51,16 @@ $DBnieuws = new DBnieuws();
     <p><?= $row['Tekst']; ?></p>
     <br>
 
-<form id="comment-form">
+<form id="comment-form" action="nieuwsberichten.php">
   <div class="form-group">
-    <label for="comment">Reactie:</label>
-    <textarea id="comment" name="comment" required></textarea>
+    <label for="Tekst">Reactie:</label>
+    <textarea id="Tekst" name="Tekst" required></textarea>
   </div>
   <div id="extra-buttons" class="form-group">
     <button id="edit-comment" type="button">Bewerk reactie</button>
     <button id="delete-comment" type="button">Verwijder reactie</button>
   </div>
-  <button type="submit">Plaats reactie</button>
+  <button type="submit" name="submit" value="submit" >Plaats reactie</button>
 </form>
 <br>
 
