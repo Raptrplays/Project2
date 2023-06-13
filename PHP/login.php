@@ -29,43 +29,41 @@
     </nav>
 
     <?php
-require_once 'dbHandler.php'; // Include or require the dbHandler class file
+    session_start();
+    require_once 'dbHandler.php'; // Include or require the dbHandler class file
 
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $db = new dbHandler();
+        $user = $db->getUser($username, $password); // Assuming a method named getUser in the dbHandler class
 
-    $db = new dbHandler();
-    $user = $db->getUserByUsernameOrEmailAndPassword($username, $password);
+        if ($user) {
+            
+            
+        } else {
+            // Invalid username or password
+            // Display an error message or redirect back to the login page
+            header("login.php");
 
-    if ($user) {
-        // Authentication successful
-        // Perform login actions (e.g., set session variables, redirect to a dashboard page)
-        // ...
-        echo "Login successful!";
-    } else {
-        // Invalid username or password
-        // Display an error message or redirect back to the login page
-        // ...
-        echo "Invalid username or password";
+            echo "Invalid username or password";
+        }
     }
-}
-?>
-
+    ?>
     <div class="container">
         <div class="box form-box">
             <header>Login</header>
-            <form action="" method="post">
+            <form action="account.php" method="post">
                 <div class="field input">
-                    <label for="username">Username Of Email</label>
-                    <input type="password" name="password" id="password" required>
+                    <label for="username">Vul hier uw naam</label>
+                    <input type="text" name="username" id="username" required>
                 </div>
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="password" name="username" id="username" required>
+                    <input type="password" name="password" id="password" required>
                 </div>
                 <div class="field">
-                    <input type="submit" name="submit" value="Login" required>
+                    <input type="submit" name="submit" value="submit" required>
                 </div>
                 <div class="link">
                     Geen account? <a href="Main.php">Registreer nu!</a>

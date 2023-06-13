@@ -32,27 +32,33 @@
    require_once "dbHandler.php";
    $db = new dbHandler();
    
-    if(isset($_POST["submit"])) {
-       $naam = $_POST['naam'];
-       $password = $_POST['password'];
-       $repeat_password = $_POST['repeat_password'];
-   
-       if ($password !== $repeat_password) {
-           echo "Error: Passwords do not match";
-           exit;
-       }
-   
-       $result = $db->createUser($naam, $password);
-       if ($result) {
-           echo "Registration successful!";
-           // Redirect to a success page or login page
-           header("Location: account.html");
-           exit;
-       } else {
-           echo "Error: Failed to register user";
-           // Handle the error as per your requirement
-       }
-   }
+   if(isset($_POST["submit"])) {
+    $naam = $_POST['naam'];
+    $password = $_POST['password'];
+    $repeat_password = $_POST['repeat_password'];
+
+    // Check if the input fields are empty
+    if (empty($naam) || empty($password) || empty($repeat_password)) {
+        echo "Error: Please fill in all the fields";
+        exit;
+    }
+
+    if ($password !== $repeat_password) {
+        echo "Error: Passwords do not match";
+        exit;
+    }
+
+    $result = $db->createUser($naam, $password);
+    if ($result) {
+        echo "Registration successful!";
+        // Redirect to a success page or login page
+        header("Location: account.html");
+        exit;
+    } else {
+        echo "Error: Failed to register user";
+        // Handle the error as per your requirement
+    }
+}
 ?>
     <div class="container">
         <header>Registreer hier!</header>

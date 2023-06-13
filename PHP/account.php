@@ -27,7 +27,23 @@
             <li><a href="Main.php" class="button">Lid worden</a></li>
         </ul>
     </nav>
+<?php
 
+session_start();
+
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    $username = $_SESSION['username'];
+    $password = $_SESSION['password'];
+
+    echo "Username: " . $username . "<br>";
+    echo "Password: " . $password . "<br>";
+} else {
+    // User not logged in, redirect or handle accordingly
+    header("Location: login.php");
+    exit;
+}
+
+?>
     <script>
         // Retrieve the name parameter from the URL
         const urlParams = new URLSearchParams(window.location.search);
