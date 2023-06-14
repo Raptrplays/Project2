@@ -1,6 +1,8 @@
 <?php
 include_once "PHP/DBnieuws.php";
+include_once "PHP/DBreactie.php";
 $DBnieuws = new DBnieuws();
+$DBreactie = new DBreactie();
 ?>
 
 <!DOCTYPE html>
@@ -34,57 +36,103 @@ $DBnieuws = new DBnieuws();
     </nav>
 
     <?php
-    if (isset($_POST['submit'])) 
-    {
-        $dbHandler->reactieMaken($_POST['Tekst'], $_POST['CommentId']);
+    if (isset($_POST['submit'])) {
+        $DBreactie->reactieMaken($_POST['Comment']);
     }
     ?>
 
-<div class="container">
-    <?php
+    <div class="container">
+        <?php
         $rows = $DBnieuws->selectAll();
-        foreach ($rows as $row) {
+        
+        $rows2 = $DBreactie->selectAllcomments();
+        //var_dump($rows2);
+        //die();
+        if (!count($rows2)==0) {
+            foreach ($rows as $row) {
+                foreach ($rows2 as $row2) {
+                    
+        ?>
+                    <div class="article">
+                        <h2><?= $row['NieuwsId']; ?></h2>
+                        <h1><?= $row['Titel']; ?></h1>
+                        <p><?= $row['Tekst']; ?></p>
+                        <br>
+<?
+if($row2['NieuwsId'] == $row['NieuwsId']){ 
     ?>
-    <div class="article">
-    <h2><?= $row['NieuwsId']; ?></h2>
-    <h1><?= $row['Titel']; ?></h1>
-    <p><?= $row['Tekst']; ?></p>
-    <br>
+                        <div class="comment-box">
+                            <p><?= $row2['Comment']; ?></p>
+                        </div>
+                        <br>
+<?
+}
+?>
 
-<form id="comment-form" action="nieuwsberichten.php">
-  <div class="form-group">
-    <label for="Tekst">Reactie:</label>
-    <textarea id="Tekst" name="Tekst" required></textarea>
-  </div>
-  <div id="extra-buttons" class="form-group">
-    <button id="edit-comment" type="button">Bewerk reactie</button>
-    <button id="delete-comment" type="button">Verwijder reactie</button>
-  </div>
-  <button type="submit" name="submit" value="submit" >Plaats reactie</button>
-</form>
-<br>
+                        <form method='post' id="comment-form" action="nieuwsberichten.php">
+                            <div class="form-group">
+                                <label for="Comment">Reactie:</label>
+                                <textarea id="Comment" name="Comment" required></textarea>
+                            </div>
+                            <div id="extra-buttons" class="form-group">
+                                <button id="edit-comment" type="button">Bewerk reactie</button>
+                                <button id="delete-comment" type="button">Verwijder reactie</button>
+                            </div>
+                            <button type="submit" name="submit" value="submit">Plaats reactie</button>
+                        </form>
+                        <br>
+                        <hr>
+                    </div>
+            <?php
+                }
+            }
+        } 
+        else 
+        {
+            foreach ($rows as $row){
 
-    <hr>
+            ?>
+            <div class="article">
+                <h2><?= $row['NieuwsId']; ?></h2>
+                <h1><?= $row['Titel']; ?></h1>
+                <p><?= $row['Tekst']; ?></p>
+                <br>
 
-</div>
-    <?php
+
+
+                <form method='post' id="comment-form" action="nieuwsberichten.php">
+                    <div class="form-group">
+                        <label for="Comment">Reactie:</label>
+                        <textarea id="Comment" name="Comment" required></textarea>
+                    </div>
+                    <div id="extra-buttons" class="form-group">
+                        <button id="edit-comment" type="button">Bewerk reactie</button>
+                        <button id="delete-comment" type="button">Verwijder reactie</button>
+                    </div>
+                    <button type="submit" name="submit" value="submit">Plaats reactie</button>
+                </form>
+                <br>
+                <hr>
+            </div>
+        <?php
         }
-    ?>
+    }
+        ?>
 
-    <br>
-    <br>
-    <br>
+        <br>
+        <br>
+        <br>
 
-    <footer>
-        <div class="footerlinks">
-            <ul>
-                <li><a href="https://twitter.com/geertwilderspvv">Twitter</a></li>
-                <li><a href="https://www.geertwilders.nl/">Geertwilders.nl</a></li>
-                <li><a href="https://www.haagsepvv.nl/">PVVDenHaag</a></li>
-                <li><a href="https://www.pvveerstekamer.nl/">PVVEersteKamer</a></li>
-            </ul>
-        </div>
-    </footer>
+        <footer>
+            <div class="footerlinks">
+                <ul>
+                    <li><a href="https://twitter.com/geertwilderspvv">Twitter</a></li>
+                    <li><a href="https://www.geertwilders.nl/">Geertwilders.nl</a></li>
+                    <li><a href="https://www.haagsepvv.nl/">PVVDenHaag</a></li>
+                    <li><a href="https://www.pvveerstekamer.nl/">PVVEersteKamer</a></li>
+                </ul>
+            </div>
+        </footer>
 
 
 </body>

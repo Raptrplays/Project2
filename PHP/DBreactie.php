@@ -1,20 +1,18 @@
 <?php
-class DBcomment
+class DBreactie
 {
     private $dataSource = "mysql:dbname=eindproject;host=localhost;";
     private $userName = "root";
     private $password = "";
 
-    public function reactieMaken($Tekst, $CommentId)
+    public function reactieMaken($Comment)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
 
-            $statement = $pdo->prepare("INSERT INTO comments(Tekst, CommentId) VALUES(:Tekst, : CommentId)");
-            $statement->bindParam("Tekst", $Tekst, PDO::PARAM_STR);
-            $statement->bindParam("CommentId", $CommentId, PDO::PARAM_INT);
+            $statement = $pdo->prepare("INSERT INTO comments(Comment) VALUES(:Comment)");
+            $statement->bindParam("Comment", $Comment, PDO::PARAM_STR);
             $statement->execute();
-
             return true;
         }
         catch(PDOException $exception){
@@ -22,6 +20,22 @@ class DBcomment
             return false;
         }
     }
+
+    public function selectAllcomments()
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+
+            $statement = $pdo->prepare("SELECT * FROM `comments`");
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    } 
 
 }
 
