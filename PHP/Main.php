@@ -30,15 +30,15 @@
 
     <?php
    require_once "dbHandler.php";
+   session_start();
    $db = new dbHandler();
    
    if(isset($_POST["submit"])) {
-    $naam = $_POST['naam'];
+    $username = $_POST['naam'];
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
 
-    // Check if the input fields are empty
-    if (empty($naam) || empty($password) || empty($repeat_password)) {
+    if (empty($username) || empty($password) || empty($repeat_password)) {
         echo "Error: Please fill in all the fields";
         exit;
     }
@@ -48,21 +48,21 @@
         exit;
     }
 
-    $result = $db->createUser($naam, $password);
+    $result = $db->createUser($username, $password);
     if ($result) {
-        echo "Registration successful!";
-        // Redirect to a success page or login page
-        header("Location: account.html");
+        $_SESSION['naam'] = $username; 
+        $_SESSION['password'] = $password;
+        header("Location: account.php");
         exit;
     } else {
         echo "Error: Failed to register user";
-        // Handle the error as per your requirement
+
     }
 }
 ?>
     <div class="container">
         <header>Registreer hier!</header>
-        <form action="Main.php" method="post">
+        <form action="" method="post">
             <div class="form-group">
                 <label for="naam">Naam:</label>
                 <input type="text" name="naam" placeholder="Naam:">

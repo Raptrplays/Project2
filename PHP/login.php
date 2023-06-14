@@ -33,18 +33,23 @@
     require_once 'dbHandler.php';
 
     if (isset($_POST['submit'])) {
-        $username = $_POST['username'];
+        $username = $_POST['naam'];
         $password = $_POST['password'];
+
         $db = new dbHandler();
         $user = $db->getUser($username, $password);
+        	var_dump($user);
 
         if ($user) {
-            $_SESSION['username'] = $username; 
+            $_SESSION['naam'] = $username;
             $_SESSION['password'] = $password;
             header("Location: account.php");
+            
             exit;
         } else {
             header("Location: login.php?error=1");
+            echo "test";
+            var_dump($username, $password);
             exit;
         }
     }
@@ -52,10 +57,10 @@
     <div class="container">
         <div class="box form-box">
             <header>Login</header>
-            <form action="account.php" method="post">
+            <form action="" method="post">
                 <div class="field input">
-                    <label for="username">Vul hier uw naam</label>
-                    <input type="text" name="username" id="username" required>
+                    <label for="naam">Vul hier uw naam</label>
+                    <input type="text" name="naam" id="naam" required>
                 </div>
                 <div class="field input">
                     <label for="password">Password</label>
