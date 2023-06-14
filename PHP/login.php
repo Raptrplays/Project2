@@ -30,23 +30,22 @@
 
     <?php
     session_start();
-    require_once 'dbHandler.php'; // Include or require the dbHandler class file
+    require_once 'dbHandler.php';
 
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $db = new dbHandler();
-        $user = $db->getUser($username, $password); // Assuming a method named getUser in the dbHandler class
+        $user = $db->getUser($username, $password);
 
         if ($user) {
-            
-            
+            $_SESSION['username'] = $username; 
+            $_SESSION['password'] = $password;
+            header("Location: account.php");
+            exit;
         } else {
-            // Invalid username or password
-            // Display an error message or redirect back to the login page
-            header("login.php");
-
-            echo "Invalid username or password";
+            header("Location: login.php?error=1");
+            exit;
         }
     }
     ?>
