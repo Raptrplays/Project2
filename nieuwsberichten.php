@@ -24,7 +24,7 @@ $DBnieuws = new DBnieuws();
         </div>
         <ul class="navbar-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="nieuwsberichten.html">Nieuwsberichten</a></li>
+            <li><a href="nieuwsberichten.php">Nieuwsberichten</a></li>
             <li><a href="leden.html">Leden</a></li>
             <li><a href="standpunten.html">Standpunten</a></li>
             <li><a href="doneren.html">Doneren</a></li>
@@ -32,6 +32,13 @@ $DBnieuws = new DBnieuws();
             <li><a href="PHP/Main.php" class="button">Lid worden</a></li>
         </ul>
     </nav>
+
+    <?php
+    if (isset($_POST['submit'])) 
+    {
+        $dbHandler->reactieMaken($_POST['Tekst'], $_POST['CommentId']);
+    }
+    ?>
 
 <div class="container">
     <?php
@@ -43,7 +50,22 @@ $DBnieuws = new DBnieuws();
     <h1><?= $row['Titel']; ?></h1>
     <p><?= $row['Tekst']; ?></p>
     <br>
+
+<form id="comment-form" action="nieuwsberichten.php">
+  <div class="form-group">
+    <label for="Tekst">Reactie:</label>
+    <textarea id="Tekst" name="Tekst" required></textarea>
+  </div>
+  <div id="extra-buttons" class="form-group">
+    <button id="edit-comment" type="button">Bewerk reactie</button>
+    <button id="delete-comment" type="button">Verwijder reactie</button>
+  </div>
+  <button type="submit" name="submit" value="submit" >Plaats reactie</button>
+</form>
+<br>
+
     <hr>
+
 </div>
     <?php
         }

@@ -1,27 +1,28 @@
 <?php
-class DBnieuws
+class DBcomment
 {
     private $dataSource = "mysql:dbname=eindproject;host=localhost;";
     private $userName = "root";
     private $password = "";
 
-    public function selectAll()
+    public function reactieMaken($Tekst, $CommentId)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
 
-            $statement = $pdo->prepare("SELECT * FROM `nieuwsbericht`");
-    
+            $statement = $pdo->prepare("INSERT INTO comments(Tekst, CommentId) VALUES(:Tekst, : CommentId)");
+            $statement->bindParam("Tekst", $Tekst, PDO::PARAM_STR);
+            $statement->bindParam("CommentId", $CommentId, PDO::PARAM_INT);
             $statement->execute();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            return true;
         }
         catch(PDOException $exception){
             var_dump($exception);
             return false;
         }
-    } 
-}
+    }
 
+}
 
 ?>
