@@ -170,3 +170,8 @@ button[type="submit"]:hover {
 #extra-buttons button {
     margin-right: 10px;
 }
+
+.comment-box{
+    height: 50px;
+    background-color: #FFFFFF;
+}
