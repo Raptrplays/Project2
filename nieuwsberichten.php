@@ -87,6 +87,7 @@ $DBreactie = new DBreactie();
                             </td>
                         </tr>
                     </table>
+                    <br>
                     <?php
                     }
                     ?>

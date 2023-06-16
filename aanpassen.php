@@ -8,6 +8,10 @@ $DBreactie = new DBreactie();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Public/aanpassen.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;800&display=swap" rel="stylesheet">
     <title>Reactie aanpassen</title>
 </head>
 <body>
@@ -22,13 +26,12 @@ $DBreactie = new DBreactie();
         <div class="row">
             <input type="hidden" name="commentId" value="<?= $commentId['commentId'] ?>"/>
             <div>
-                <label for="comment">Name</label>
-                <input id="comment" name="comment" required value="<?= $commentId['comment'] ?>"/>
-            </div>
+                <input type="text" id="comment" name="comment" required value="<?= $commentId['comment'] ?>"/>
             <button type="submit" name='edit' value="edit" style="margin-top: 20px;">
                 <p>Reactie aanpassen</p>
             </button>
         </div>
-    </form>
+</form>
+
 </body>
 </html>
