@@ -39,35 +39,31 @@ $DBreactie = new DBreactie();
     if (isset($_POST['submit'])) {
         $DBreactie->reactieMaken($_POST['Comment']);
     }
+    else if (isset($_POST['delete'])) {
+        $DBreactie->reactieVerwijderen($_POST['CommentId']);
+    }
     ?>
 
     <div class="container">
         <?php
         $rows = $DBnieuws->selectAll();
-        
+
         $rows2 = $DBreactie->selectAllcomments();
-        //var_dump($rows2);
-        //die();
-        if (!count($rows2)==0) {
+        if (!count($rows2) == 0) {
             foreach ($rows as $row) {
                 foreach ($rows2 as $row2) {
-                    
         ?>
                     <div class="article">
                         <h2><?= $row['NieuwsId']; ?></h2>
                         <h1><?= $row['Titel']; ?></h1>
                         <p><?= $row['Tekst']; ?></p>
                         <br>
-<?
-if($row2['NieuwsId'] == $row['NieuwsId']){ 
-    ?>
+
                         <div class="comment-box">
                             <p><?= $row2['Comment']; ?></p>
                         </div>
                         <br>
-<?
-}
-?>
+
 
                         <form method='post' id="comment-form" action="nieuwsberichten.php">
                             <div class="form-group">
@@ -76,47 +72,45 @@ if($row2['NieuwsId'] == $row['NieuwsId']){
                             </div>
                             <div id="extra-buttons" class="form-group">
                                 <button id="edit-comment" type="button">Bewerk reactie</button>
-                                <button id="delete-comment" type="button">Verwijder reactie</button>
+                                <button type="submit" name="CommentId" id="CommentId" type="button">Verwijder reactie</button>
                             </div>
                             <button type="submit" name="submit" value="submit">Plaats reactie</button>
                         </form>
                         <br>
                         <hr>
                     </div>
-            <?php
+                <?php
                 }
             }
-        } 
-        else 
-        {
-            foreach ($rows as $row){
+        } else {
+            foreach ($rows as $row) {
 
-            ?>
-            <div class="article">
-                <h2><?= $row['NieuwsId']; ?></h2>
-                <h1><?= $row['Titel']; ?></h1>
-                <p><?= $row['Tekst']; ?></p>
-                <br>
+                ?>
+                <div class="article">
+                    <h2><?= $row['NieuwsId']; ?></h2>
+                    <h1><?= $row['Titel']; ?></h1>
+                    <p><?= $row['Tekst']; ?></p>
+                    <br>
 
 
 
-                <form method='post' id="comment-form" action="nieuwsberichten.php">
-                    <div class="form-group">
-                        <label for="Comment">Reactie:</label>
-                        <textarea id="Comment" name="Comment" required></textarea>
-                    </div>
-                    <div id="extra-buttons" class="form-group">
-                        <button id="edit-comment" type="button">Bewerk reactie</button>
-                        <button id="delete-comment" type="button">Verwijder reactie</button>
-                    </div>
-                    <button type="submit" name="submit" value="submit">Plaats reactie</button>
-                </form>
-                <br>
-                <hr>
-            </div>
+                    <form method='post' id="comment-form" action="nieuwsberichten.php">
+                        <div class="form-group">
+                            <label for="Comment">Reactie:</label>
+                            <textarea id="Comment" name="Comment" required></textarea>
+                        </div>
+                        <div id="extra-buttons" class="form-group">
+                            <button id="edit-comment" type="button">Bewerk reactie</button>
+                            <button id="delete-comment" type="button">Verwijder reactie</button>
+                        </div>
+                        <button type="submit" name="submit" value="submit">Plaats reactie</button>
+                    </form>
+                    <br>
+                    <hr>
+                </div>
         <?php
+            }
         }
-    }
         ?>
 
         <br>

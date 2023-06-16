@@ -37,6 +37,23 @@ class DBreactie
         }
     } 
 
+    public function reactieVerwijderen($CommentId){
+        try{
+        $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+
+        $statement = $pdo->prepare("DELETE FROM comments WHERE CommentId = :CommentId");
+        $statement->bindParam("CommentId", $CommentId, PDO::PARAM_INT);
+        $statement->execute();
+        return true;
+
+        }
+        catch(PDOException $e){
+            var_dump($e);
+            return false;
+        }
+
+    }
+
 }
 
 ?>
