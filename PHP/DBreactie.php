@@ -5,13 +5,15 @@ class DBreactie
     private $userName = "root";
     private $password = "";
 
-    public function reactieMaken($Comment)
+    public function reactieMaken($Comment, $GebruikersId, $NieuwsId)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
 
-            $statement = $pdo->prepare("INSERT INTO comments(Comment) VALUES(:Comment)");
+            $statement = $pdo->prepare("INSERT INTO comments(Comment, GebruikersId, NieuwsId) VALUES(:Comment, :GebruikersId, :NieuwsId)");
             $statement->bindParam("Comment", $Comment, PDO::PARAM_STR);
+            $statement->bindParam("GebruikersId", $GebruikersId, PDO::PARAM_INT);
+            $statement->bindParam("NieuwsId", $NieuwsId, PDO::PARAM_INT);
             $statement->execute();
             return true;
         }
@@ -21,12 +23,18 @@ class DBreactie
         }
     }
 
-    public function selectAllcomments()
-    {
+    public function selectAllCommentsForNews(int $newsId){
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
 
-            $statement = $pdo->prepare("SELECT * FROM `comments`");
+            $statement = $pdo->prepare(
+                "SELECT CommentId, Comment, gebruikers.GebruikersId, Naam 
+                FROM comments 
+                JOIN gebruikers 
+                ON comments.GebruikersId = gebruikers.GebruikersId 
+                WHERE NieuwsId = :NieuwsId"
+            );
+            $statement->bindParam("NieuwsId", $newsId, PDO::PARAM_INT);
             $statement->execute();
 
             return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -35,7 +43,7 @@ class DBreactie
             var_dump($exception);
             return false;
         }
-    } 
+    }
 
     public function reactieVerwijderen($CommentId){
         try{

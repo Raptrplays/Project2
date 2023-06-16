@@ -36,8 +36,9 @@ $DBreactie = new DBreactie();
     </nav>
 
     <?php
-    if (isset($_POST['submit'])) {
-        $DBreactie->reactieMaken($_POST['Comment']);
+    if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
+        var_dump($_POST['GebruikersId'], $_POST['NieuwsId']);
+        $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
     }
     else if (isset($_POST['delete'])) {
         $DBreactie->reactieVerwijderen($_POST['CommentId']);
@@ -46,21 +47,29 @@ $DBreactie = new DBreactie();
 
     <div class="container">
         <?php
-        $rows = $DBnieuws->selectAll();
 
-        $rows2 = $DBreactie->selectAllcomments();
-        if (!count($rows2) == 0) {
-            foreach ($rows as $row) {
-                foreach ($rows2 as $row2) {
-        ?>
+        $newsItems = $DBnieuws->selectAll();
+            foreach ($newsItems as $newsItem) 
+            {
+                $comments = $DBreactie->selectAllCommentsForNews($newsItem['NieuwsId']);
+                    ?>
                     <div class="article">
-                        <h2><?= $row['NieuwsId']; ?></h2>
-                        <h1><?= $row['Titel']; ?></h1>
-                        <p><?= $row['Tekst']; ?></p>
+                        <h2><?= $newsItem['NieuwsId']; ?></h2>
+                        <h1><?= $newsItem['Titel']; ?></h1>
+                        <p><?= $newsItem['Tekst']; ?></p>
                         <br>
 
                         <div class="comment-box">
-                            <p><?= $row2['Comment']; ?></p>
+                                <?php
+                                foreach($comments as $comment){
+                                    ?>
+                                    <div class="comment">
+                                        <h3><?= $comment["Naam"]?></h3>
+                                        <p><?= $comment["Comment"]?></p>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                         </div>
                         <br>
 
@@ -68,6 +77,8 @@ $DBreactie = new DBreactie();
                         <form method='post' id="comment-form" action="nieuwsberichten.php">
                             <div class="form-group">
                                 <label for="Comment">Reactie:</label>
+                                <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>"/>
+                                <input type="hidden" name="GebruikersId" id="GebruikersId" value="GebruikersId"/>
                                 <textarea id="Comment" name="Comment" required></textarea>
                             </div>
                             <div id="extra-buttons" class="form-group">
@@ -80,42 +91,10 @@ $DBreactie = new DBreactie();
                         <hr>
                     </div>
                 <?php
-                }
             }
-        } else {
-            foreach ($rows as $row) {
-
-                ?>
-                <div class="article">
-                    <h2><?= $row['NieuwsId']; ?></h2>
-                    <h1><?= $row['Titel']; ?></h1>
-                    <p><?= $row['Tekst']; ?></p>
-                    <br>
-
-
-
-                    <form method='post' id="comment-form" action="nieuwsberichten.php">
-                        <div class="form-group">
-                            <label for="Comment">Reactie:</label>
-                            <textarea id="Comment" name="Comment" required></textarea>
-                        </div>
-                        <div id="extra-buttons" class="form-group">
-                            <button id="edit-comment" type="button">Bewerk reactie</button>
-                            <button id="delete-comment" type="button">Verwijder reactie</button>
-                        </div>
-                        <button type="submit" name="submit" value="submit">Plaats reactie</button>
-                    </form>
-                    <br>
-                    <hr>
-                </div>
-        <?php
-            }
-        }
         ?>
 
-        <br>
-        <br>
-        <br>
+
 
         <footer>
             <div class="footerlinks">
