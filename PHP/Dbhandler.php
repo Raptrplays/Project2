@@ -37,6 +37,22 @@ class dbHandler
                 return null;
             }
         }
+        public function getGebruikersId($naam, $password)
+        {
+            try {
+                $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+                $statement = $pdo->prepare("SELECT GebruikersId FROM gebruikers WHERE Naam = :naam AND Wachtwoord = :password");
+                $statement->bindParam(":naam", $naam, PDO::PARAM_STR);
+                $statement->bindParam(":password", $password, PDO::PARAM_STR);
+                $statement->execute();
+        
+                $user1 = $statement->fetchColumn();
+                return $user1;
+            } catch (PDOException $e) {
+                var_dump($e);
+                return null;
+            }
+        }
         public function deleteUser($naam)
         {
             try {

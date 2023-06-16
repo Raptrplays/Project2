@@ -38,11 +38,13 @@
 
         $db = new dbHandler();
         $user = $db->getUser($username, $password);
-        	var_dump($user);
+        $GebruikersId = $db->getGebruikersId($username, $password);
+        	var_dump($GebruikersId);
 
-        if ($user) {
+        if ($user && $GebruikersId) {
             $_SESSION['naam'] = $username;
             $_SESSION['password'] = $password;
+            $_SESSION['GebruikersId'] = $GebruikersId;
             header("Location: account.php");
             
             exit;

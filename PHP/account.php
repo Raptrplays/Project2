@@ -34,12 +34,15 @@
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
+        $GebruikersId = $_SESSION['GebruikersId'];
+        var_dump($GebruikersId);
     ?>
 
         <div class="container">
             <div class="box">
-                Welcome, <?php echo $username; ?>!<br>
-                Your password: <?php echo $password; ?><br>
+                Welkom, <?php echo $username; ?>!<br>
+                Uw Password: <?php echo $password; ?><br>
+                Jou Id:  <?php echo $GebruikersId; ?><br>
 
                 <?php
                 if (isset($_POST['submit'])) {
