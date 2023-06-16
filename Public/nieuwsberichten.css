@@ -171,3 +171,19 @@ button[type="submit"]:hover {
     margin-right: 10px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #222;
+    color: #fff;
+}
+
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #555;
+}

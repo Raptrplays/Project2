@@ -3,6 +3,7 @@ include_once "PHP/DBnieuws.php";
 include_once "PHP/DBreactie.php";
 $DBnieuws = new DBnieuws();
 $DBreactie = new DBreactie();
+
 ?>
 
 <!DOCTYPE html>
@@ -37,61 +38,76 @@ $DBreactie = new DBreactie();
 
     <?php
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
-        var_dump($_POST['GebruikersId'], $_POST['NieuwsId']);
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
-    }
+    } 
     else if (isset($_POST['delete'])) {
         $DBreactie->reactieVerwijderen($_POST['CommentId']);
     }
+    else if (isset($_POST['edit'])) {
+
+        $DBreactie->reactieAanpassen($_POST['comment'], $_POST['commentId']);
+
+    } 
     ?>
 
     <div class="container">
         <?php
 
         $newsItems = $DBnieuws->selectAll();
-            foreach ($newsItems as $newsItem) 
-            {
-                $comments = $DBreactie->selectAllCommentsForNews($newsItem['NieuwsId']);
+        foreach ($newsItems as $newsItem) {
+            $comments = $DBreactie->selectAllCommentsForNews($newsItem['NieuwsId']);
+        ?>
+            <div class="article">
+                <h2><?= $newsItem['NieuwsId']; ?></h2>
+                <h1><?= $newsItem['Titel']; ?></h1>
+                <p><?= $newsItem['Tekst']; ?></p>
+                <br>
+
+                <div class="comment-box">
+                    <?php
+                    foreach ($comments as $comment) {
                     ?>
-                    <div class="article">
-                        <h2><?= $newsItem['NieuwsId']; ?></h2>
-                        <h1><?= $newsItem['Titel']; ?></h1>
-                        <p><?= $newsItem['Tekst']; ?></p>
-                        <br>
+                    <table>
+                        <tr>
+                            <td><?= $comment["Naam"] ?></td>
+                            <td><?= $comment["Comment"] ?></td>
+                            <td>
+                                <form method="POST" action="aanpassen.php">
+                                    <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
+                                    <button type="submit">
+                                        <p>Reactie aanpassen</p>
+                                    </button>
+                                </form>
+                                <form method="POST" action="nieuwsberichten.php">
+                                    <input type="hidden" name="CommentId" value="<?= $comment['CommentId'] ?>" />
+                                    <button type="submit" name="delete">
+                                        <p>Reactie verwijderen</p>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <br>
 
-                        <div class="comment-box">
-                                <?php
-                                foreach($comments as $comment){
-                                    ?>
-                                    <div class="comment">
-                                        <h3><?= $comment["Naam"]?></h3>
-                                        <p><?= $comment["Comment"]?></p>
-                                    </div>
-                                    <?php
-                                }
-                                ?>
-                        </div>
-                        <br>
 
-
-                        <form method='post' id="comment-form" action="nieuwsberichten.php">
-                            <div class="form-group">
-                                <label for="Comment">Reactie:</label>
-                                <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>"/>
-                                <input type="hidden" name="GebruikersId" id="GebruikersId" value="GebruikersId"/>
-                                <textarea id="Comment" name="Comment" required></textarea>
-                            </div>
-                            <div id="extra-buttons" class="form-group">
-                                <button id="edit-comment" type="button">Bewerk reactie</button>
-                                <button type="submit" name="CommentId" id="CommentId" type="button">Verwijder reactie</button>
-                            </div>
-                            <button type="submit" name="submit" value="submit">Plaats reactie</button>
-                        </form>
-                        <br>
-                        <hr>
+                <form method='post' id="comment-form" action="nieuwsberichten.php">
+                    <div class="form-group">
+                        <label for="Comment">Reactie:</label>
+                        <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>" />
+                        <input type="hidden" name="GebruikersId" id="GebruikersId" />
+                        <textarea id="Comment" name="Comment" required></textarea>
                     </div>
-                <?php
-            }
+                    <button type="submit" name="submit" value="submit">Plaats reactie</button>
+                </form>
+                <br>
+                <hr>
+            </div>
+        <?php
+        }
         ?>
 
 
