@@ -34,42 +34,49 @@
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
+    ?>
 
-        echo '<div class="container">';
-        echo '<div class="box">';
-        echo 'Welcome, ' . $username . '!<br>';
-        echo 'Your password: ' . $password . '<br>';
+        <div class="container">
+            <div class="box">
+                Welcome, <?php echo $username; ?>!<br>
+                Your password: <?php echo $password; ?><br>
 
-        if (isset($_POST['submit'])) {
-            $newUsername = $_POST['new_username'];
+                <?php
+                if (isset($_POST['submit'])) {
+                    $newUsername = $_POST['new_username'];
 
-            // Update the user's name in the database
-            require_once 'dbHandler.php';
-            $db = new dbHandler();
-            $success = $db->updateUsername($username, $newUsername);
+                    require_once 'dbHandler.php';
+                    $db = new dbHandler();
+                    $success = $db->updateUsername($username, $newUsername);
 
-            if ($success) {
-                // Update the session with the new username
-                $_SESSION['naam'] = $newUsername;
-                $username = $newUsername; // Update the variable used for display
-                echo 'Your name has been updated successfully!';
-            } else {
-                echo 'Failed to update your name.';
-            }
-        }
+                    if ($success) {
+                        $_SESSION['naam'] = $newUsername;
+                        $username = $newUsername;
+                ?>
+                        <p>Your name has been updated successfully!</p>
+                    <?php
+                    } else {
+                    ?>
+                        <p>Failed to update your name.</p>
+                <?php
+                    }
+                }
+                ?>
 
-        echo '<form action="account.php" method="post">'; // Stay on the same page
-        echo '<div class="field">';
-        echo '<label for="new_username">Edit Name</label>';
-        echo '<input type="text" name="new_username" id="new_username" required>';
-        echo '</div>';
-        echo '<input type="submit" name="submit" value="Update" class="button">';
-        echo '</form>';
-        echo '<form action="delete.php" method="post">';
-        echo '<input type="submit" name="submit" value="Delete Account" class="button">';
-        echo '</form>';
-        echo '</div>';
-        echo '</div>';
+                <form action="account.php" method="post">
+                    <div class="field">
+                        <label for="new_username">Edit Name</label>
+                        <input type="text" name="new_username" id="new_username" required>
+                    </div>
+                    <input type="submit" name="submit" value="Update" class="button">
+                </form>
+                <form action="delete.php" method="post">
+                    <input type="submit" name="submit" value="Delete Account" class="button">
+                </form>
+            </div>
+        </div>
+
+    <?php
     } else {
         header("Location: login.php");
         exit;

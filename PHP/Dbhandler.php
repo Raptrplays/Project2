@@ -15,8 +15,7 @@ class dbHandler
     
             return true;
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            die();
+            var_dump($e);
             return false;
         }
     }
@@ -34,7 +33,7 @@ class dbHandler
                 $user1 = $statement->fetch(PDO::FETCH_ASSOC);
                 return $user1;
             } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
+                var_dump($e);
                 return null;
             }
         }
@@ -48,26 +47,25 @@ class dbHandler
     
                 return true;
             } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
+                var_dump($e);
                 die();
                 return false;
             }
         }
-        public function updateUsername($oudenaam, $nieuwenaam)
-{
-    try {
-        $pdo = new PDO($this->dataSource, $this->userName, $this->password);
-        $statement = $pdo->prepare("UPDATE gebruikers SET Naam = :nieuwenaam WHERE Naam = :oudenaam");
-        $statement->bindParam(":new_username", $nieuwenaam, PDO::PARAM_STR);
-        $statement->bindParam(":old_username", $oudenaam, PDO::PARAM_STR);
-        $statement->execute();
-
-        return true;
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-        die();
-        return false;
-    }
-}
-
+        public function updateUsername($Naam, $Nieuwenaam)
+        {
+            try {
+                $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+                $statement = $pdo->prepare("UPDATE gebruikers SET Naam = :Nieuwenaam WHERE Naam = :Naam");
+                $statement->bindParam(":Naam", $Naam, PDO::PARAM_STR);
+                $statement->bindParam(":Nieuwenaam", $Nieuwenaam, PDO::PARAM_STR);
+                $statement->execute();
+        
+                $rowCount = $statement->rowCount();
+                return ($rowCount > 0); 
+            } catch (PDOException $e) {
+                var_dump($e);
+                return false;
+            }
+        }
 }
