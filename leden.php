@@ -24,8 +24,18 @@
       <li><a href="standpunten.html">Standpunten</a></li>
       <li><a href="doneren.html">Doneren</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="PHP/Main.php" class="button">Lid worden</a></li>
-    </ul>
+      <?php
+      session_start();
+      if (isset($_SESSION['naam'])) {
+          echo '<li><a href="account.php" class="button">Mijn account</a></li>';
+      } 
+      else if ((isset($_POST['delete']))){
+         session_destroy();
+      }
+      else {
+          echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
+      }
+      ?>    </ul>
   </nav>
 
    <h1>De leden van de PVV</h1>

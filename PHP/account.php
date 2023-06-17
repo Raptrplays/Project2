@@ -24,25 +24,33 @@
             <li><a href="#">Standpunten</a></li>
             <li><a href="#">Doneren</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="Main.php" class="button">Lid worden</a></li>
+            <?php
+            session_start();
+            if (isset($_SESSION['naam'])) {
+                echo '<li><a href="account.php" class="button">Mijn account</a></li>';
+            } 
+            else if ((isset($_POST['delete']))){
+               session_destroy();
+            }
+            else {
+                echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
+            }
+            ?>
         </ul>
     </nav>
 
     <?php
-    session_start();
-
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
         $GebruikersId = $_SESSION['GebruikersId'];
-        var_dump($GebruikersId);
     ?>
 
         <div class="container">
             <div class="box">
                 Welkom, <?php echo $username; ?>!<br>
                 Uw Password: <?php echo $password; ?><br>
-                Jou Id:  <?php echo $GebruikersId; ?><br>
+                Jou Id: <?php echo $GebruikersId; ?><br>
 
                 <?php
                 if (isset($_POST['submit'])) {
@@ -74,7 +82,7 @@
                     <input type="submit" name="submit" value="Update" class="button">
                 </form>
                 <form action="delete.php" method="post">
-                    <input type="submit" name="submit" value="Delete Account" class="button">
+                    <input type="submit" name="delete" id="delete" value="Verwijder Account" class="button">
                 </form>
             </div>
         </div>

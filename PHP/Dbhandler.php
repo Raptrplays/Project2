@@ -65,7 +65,6 @@ class dbHandler
             } catch (PDOException $e) {
                 var_dump($e);
                 die();
-                return false;
             }
         }
         public function updateUsername($Naam, $Nieuwenaam)
