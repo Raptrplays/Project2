@@ -26,39 +26,34 @@ $DBreactie = new DBreactie();
             <a href="#"><img class="navimg" src="images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
         </div>
         <ul class="navbar-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="nieuwsberichten.php">Nieuwsberichten</a></li>
-            <li><a href="leden.html">Leden</a></li>
-            <li><a href="standpunten.html">Standpunten</a></li>
-            <li><a href="doneren.html">Doneren</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="leden.php">Leden</a></li>
+            <li><a href="standpunten.php">Standpunten</a></li>
+            <li><a href="doneren.php">Doneren</a></li>
+            <li><a href="contact.php">Contact</a></li>
             <?php
             session_start();
             if (isset($_SESSION['naam'])) {
                 echo '<li><a href="account.php" class="button">Mijn account</a></li>';
-            } 
-            else if ((isset($_POST['delete']))){
-               session_destroy();
-            }
-            else {
+            } else if ((isset($_POST['delete']))) {
+                session_destroy();
+            } else {
                 echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
             }
-            ?>        
-            </ul>
+            ?>
+        </ul>
     </nav>
 
     <?php
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
-    } 
-    else if (isset($_POST['delete'])) {
+    } else if (isset($_POST['delete'])) {
         $DBreactie->reactieVerwijderen($_POST['CommentId']);
-    }
-    else if (isset($_POST['edit'])) {
+    } else if (isset($_POST['edit'])) {
 
         $DBreactie->reactieAanpassen($_POST['comment'], $_POST['commentId']);
-
-    } 
+    }
     ?>
 
     <div class="container">
@@ -78,27 +73,27 @@ $DBreactie = new DBreactie();
                     <?php
                     foreach ($comments as $comment) {
                     ?>
-                    <table>
-                        <tr>
-                            <td><?= $comment["Naam"] ?></td>
-                            <td><?= $comment["Comment"] ?></td>
-                            <td>
-                                <form method="POST" action="aanpassen.php">
-                                    <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
-                                    <button type="submit">
-                                        <p>Reactie aanpassen</p>
-                                    </button>
-                                </form>
-                                <form method="POST" action="nieuwsberichten.php">
-                                    <input type="hidden" name="CommentId" value="<?= $comment['CommentId'] ?>" />
-                                    <button type="submit" name="delete">
-                                        <p>Reactie verwijderen</p>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
+                        <table>
+                            <tr>
+                                <td><?= $comment["Naam"] ?></td>
+                                <td><?= $comment["Comment"] ?></td>
+                                <td>
+                                    <form method="POST" action="aanpassen.php">
+                                        <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
+                                        <button type="submit">
+                                            <p>Reactie aanpassen</p>
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="nieuwsberichten.php">
+                                        <input type="hidden" name="CommentId" value="<?= $comment['CommentId'] ?>" />
+                                        <button type="submit" name="delete">
+                                            <p>Reactie verwijderen</p>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
                     <?php
                     }
                     ?>
