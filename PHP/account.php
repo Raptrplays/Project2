@@ -18,7 +18,7 @@
             <a href="#"><img class="navimg" src="../images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
         </div>
         <ul class="navbar-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="../nieuwsberichten.php">Nieuwsberichten</a></li>
             <li><a href="#">Leden</a></li>
             <li><a href="#">Standpunten</a></li>
@@ -29,9 +29,16 @@
             if (isset($_SESSION['naam'])) {
                 echo '<li><a href="account.php" class="button">Mijn account</a></li>';
             } 
-            else if ((isset($_POST['delete']))){
+
+            if ((isset($_POST['delete']))){
                session_destroy();
             }
+
+            if ((isset($_POST['logout']))){
+               session_destroy();
+               unset($_SESSION['naam']);
+            }
+
             else {
                 echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
             }
@@ -80,6 +87,9 @@
                         <input type="text" name="new_username" id="new_username" required>
                     </div>
                     <input type="submit" name="submit" value="Update" class="button">
+                </form>
+                <form action="Main.php" method="post">
+                    <input type="submit" name="logout" id="logout" value="Uitloggen" class="button">
                 </form>
                 <form action="delete.php" method="post">
                     <input type="submit" name="delete" id="delete" value="Verwijder Account" class="button">

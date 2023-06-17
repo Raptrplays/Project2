@@ -3,6 +3,7 @@ include_once "PHP/DBnieuws.php";
 include_once "PHP/DBreactie.php";
 $DBnieuws = new DBnieuws();
 $DBreactie = new DBreactie();
+            session_start();
 
 ?>
 
@@ -33,20 +34,20 @@ $DBreactie = new DBreactie();
             <li><a href="doneren.php">Doneren</a></li>
             <li><a href="contact.php">Contact</a></li>
             <?php
-            session_start();
             if (isset($_SESSION['naam'])) {
-                echo '<li><a href="account.php" class="button">Mijn account</a></li>';
-            } else if ((isset($_POST['delete']))) {
-                session_destroy();
-            } else {
-                echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
+                echo '<li><a href="PHP/account.php" class="button">Mijn account</a></li>';
+            } 
+            else {
+                echo '<li><a href="PHP/Main.php" class="button">Lid worden</a></li>';
             }
             ?>
         </ul>
     </nav>
 
     <?php
+    
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
+        var_dump($_POST);
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
     } else if (isset($_POST['delete'])) {
         $DBreactie->reactieVerwijderen($_POST['CommentId']);
@@ -58,7 +59,6 @@ $DBreactie = new DBreactie();
 
     <div class="container">
         <?php
-
         $newsItems = $DBnieuws->selectAll();
         foreach ($newsItems as $newsItem) {
             $comments = $DBreactie->selectAllCommentsForNews($newsItem['NieuwsId']);
@@ -105,7 +105,7 @@ $DBreactie = new DBreactie();
                     <div class="form-group">
                         <label for="Comment">Reactie:</label>
                         <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>" />
-                        <input type="hidden" name="GebruikersId" id="GebruikersId" />
+                        <input type="hidden" name="GebruikersId" value="<?= ($_SESSION['GebruikersId']) ?>"/>
                         <textarea id="Comment" name="Comment" required></textarea>
                     </div>
                     <button type="submit" name="submit" value="submit">Plaats reactie</button>

@@ -18,12 +18,12 @@
             <a href="#"><img class="navimg" src="../images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
         </div>
         <ul class="navbar-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="../nieuwsberichten.php">Nieuwsberichten</a></li>
-            <li><a href="../leden.html">Leden</a></li>
-            <li><a href="../standpunten.html">Standpunten</a></li>
-            <li><a href="../doneren.html">Doneren</a></li>
-            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../leden.php">Leden</a></li>
+            <li><a href="../standpunten.php">Standpunten</a></li>
+            <li><a href="../doneren.php">Doneren</a></li>
+            <li><a href="../contact.php">Contact</a></li>
             <li><a href="Main.php" class="button">Lid worden</a></li>
         </ul>
     </nav>
@@ -32,7 +32,7 @@
    require_once "dbHandler.php";
    session_start();
    $db = new dbHandler();
-   
+
    if(isset($_POST["submit"])) {
     $username = $_POST['naam'];
     $password = $_POST['password'];

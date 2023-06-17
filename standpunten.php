@@ -27,11 +27,11 @@
             <?php
             session_start();
             if (isset($_SESSION['naam'])) {
-                echo '<li><a href="account.php" class="button">Mijn account</a></li>';
+                echo '<li><a href="PHP/account.php" class="button">Mijn account</a></li>';
             } else if ((isset($_POST['delete']))) {
                 session_destroy();
             } else {
-                echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
+                echo '<li><a href="PHP/Main.php" class="button">Lid worden</a></li>';
             }
             ?>
         </ul>
