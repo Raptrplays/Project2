@@ -39,7 +39,6 @@
         $db = new dbHandler();
         $user = $db->getUser($username, $password);
         $GebruikersId = $db->getGebruikersId($username, $password);
-        	var_dump($GebruikersId);
 
         if ($user && $GebruikersId) {
             $_SESSION['naam'] = $username;

@@ -3,7 +3,7 @@ include_once "PHP/DBnieuws.php";
 include_once "PHP/DBreactie.php";
 $DBnieuws = new DBnieuws();
 $DBreactie = new DBreactie();
-            session_start();
+session_start();
 
 ?>
 
@@ -47,7 +47,6 @@ $DBreactie = new DBreactie();
     <?php
     
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
-        var_dump($_POST);
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
     } else if (isset($_POST['delete'])) {
         $DBreactie->reactieVerwijderen($_POST['CommentId']);

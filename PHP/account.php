@@ -30,13 +30,8 @@
                 echo '<li><a href="account.php" class="button">Mijn account</a></li>';
             } 
 
-            if ((isset($_POST['delete']))){
+            else if ((isset($_POST['delete']))){
                session_destroy();
-            }
-
-            if ((isset($_POST['logout']))){
-               session_destroy();
-               unset($_SESSION['naam']);
             }
 
             else {
