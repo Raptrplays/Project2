@@ -58,7 +58,7 @@
       Voor mensen die in een Nederland willen wonen waar ze weer veilig zijn, een land waar
       we trots zijn op onze eigen cultuur en ons geen racisme laten aanpraten.
     </h3>
-    <a href="standpunten.html"><button>Bekijk onze standpunten</button></a>
+    <a href="standpunten.php"><button>Bekijk onze standpunten</button></a>
 
     <br>
     <br>
@@ -72,7 +72,7 @@
       misbruik
       maken van het asielbeleid.
     </h3>
-    <a href="nieuwsberichten.html"><button>Bekijk hier alle nieuwsberichten</button></a>
+    <a href="nieuwsberichten.php"><button>Bekijk hier alle nieuwsberichten</button></a>
   </div>
 
   <br>
