@@ -130,7 +130,6 @@ footer ul li a:hover {
 }
 
 
-/*phone*/
 @media only screen and (max-width:480px) {
     .navbar {
         height: auto;
@@ -166,6 +165,12 @@ footer ul li a:hover {
     #menulist {
         overflow: hidden;
         transition: 1s;
+    }
+
+    .tekst {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
     }
 }
 
@@ -204,6 +209,12 @@ footer ul li a:hover {
     #menulist {
         overflow: hidden;
         transition: 1s;
+    }
+
+    .tekst {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
     }
 }
 
@@ -244,6 +255,12 @@ footer ul li a:hover {
         overflow: hidden;
         transition: 1s;
     }
+
+    .tekst {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 50px;
+    }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1279px) {
@@ -251,6 +268,12 @@ footer ul li a:hover {
     nav ul li {
         margin-top: -10px;
         padding-right: 20px;
+    }
+
+    .tekst {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 50px;
     }
 }
 

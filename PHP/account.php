@@ -14,26 +14,26 @@
 
 <body>
     <div class="navbar">
-        <img src="images/1280px-PVV_logo_(2006–present).svg.png" class="logo" alt="logo">
+        <img src="../images/1280px-PVV_logo_(2006–present).svg.png" class="logo" alt="logo">
         <div class="header-menu">
             <img src="images/menu.png" alt="menu" onclick="togglemenu()" class="menu">
         </div>
         <nav>
             <ul id="menulist">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="nieuwsberichten.php">Nieuwsberichten</a></li>
-                <li><a href="leden.php">Leden</a></li>
-                <li><a href="standpunten.php">Standpunten</a></li>
-                <li><a href="doneren.php">Doneren</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../nieuwsberichten.php">Nieuwsberichten</a></li>
+                <li><a href="../leden.php">Leden</a></li>
+                <li><a href="../standpunten.php">Standpunten</a></li>
+                <li><a href="../doneren.php">Doneren</a></li>
+                <li><a href="../contact.php">Contact</a></li>
                 <?php
                 session_start();
                 if (isset($_SESSION['naam'])) {
-                    echo '<li><a href="PHP/account.php" class="button">Mijn account</a></li>';
+                    echo '<li><a href="account.php" class="button">Mijn account</a></li>';
                 } else if ((isset($_POST['delete']))) {
                     session_destroy();
                 } else {
-                    echo '<li><a href="PHP/Main.php" class="button">Lid worden</a></li>';
+                    echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
                 }
                 ?>
             </ul>
@@ -108,7 +108,20 @@
         </div>
     </footer>
 
+    <script>
+    var menulist = document.getElementById("menulist");
 
+    menulist.style.maxHeight = "0px";
+
+    function togglemenu() {
+      if (menulist.style.maxHeight == "0px") {
+        menulist.style.maxHeight = "300px";
+      } else {
+        menulist.style.maxHeight = "0px";
+      }
+
+    }
+  </script>
 </body>
 
 </html>

@@ -36,7 +36,6 @@ session_start();
                 <li><a href="doneren.php">Doneren</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <?php
-                session_start();
                 if (isset($_SESSION['naam'])) {
                     echo '<li><a href="PHP/account.php" class="button">Mijn account</a></li>';
                 } else if ((isset($_POST['delete']))) {
@@ -50,7 +49,7 @@ session_start();
     </div>
 
     <?php
-
+    session_start();
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
     } else if (isset($_POST['delete'])) {
@@ -120,7 +119,7 @@ session_start();
         <?php
         }
         ?>
-
+    </div>
 
 
         <footer>
@@ -134,7 +133,20 @@ session_start();
             </div>
         </footer>
 
+        <script>
+    var menulist = document.getElementById("menulist");
 
+    menulist.style.maxHeight = "0px";
+
+    function togglemenu() {
+      if (menulist.style.maxHeight == "0px") {
+        menulist.style.maxHeight = "300px";
+      } else {
+        menulist.style.maxHeight = "0px";
+      }
+
+    }
+  </script>
 </body>
 
 </html>

@@ -41,8 +41,6 @@
   </div>
 
   <div class="tekst">
-
-
     <h1>Lid Worden</h1>
     <h3>
       Sluit u aan bij de PVV en ondersteun hun visie op vrijheid en nationale identiteit. Word lid en maak samen met hen
