@@ -13,53 +13,55 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="navbar-logo">
-            <a href="#"><img class="navimg" src="../images/1280px-PVV_logo_(2006–present).svg.png" alt="Logo"></a>
+    <div class="navbar">
+        <img src="images/1280px-PVV_logo_(2006–present).svg.png" class="logo" alt="logo">
+        <div class="header-menu">
+            <img src="images/menu.png" alt="menu" onclick="togglemenu()" class="menu">
         </div>
-        <ul class="navbar-links">
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="../nieuwsberichten.php">Nieuwsberichten</a></li>
-            <li><a href="../leden.php">Leden</a></li>
-            <li><a href="../standpunten.php">Standpunten</a></li>
-            <li><a href="../doneren.php">Doneren</a></li>
-            <li><a href="../contact.php">Contact</a></li>
-            <li><a href="Main.php" class="button">Lid worden</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul id="menulist">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="nieuwsberichten.php">Nieuwsberichten</a></li>
+                <li><a href="leden.php">Leden</a></li>
+                <li><a href="standpunten.php">Standpunten</a></li>
+                <li><a href="doneren.php">Doneren</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="PHP/Main.php" class="button">Lid worden</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <?php
-   require_once "dbHandler.php";
-   session_start();
-   $db = new dbHandler();
+    require_once "dbHandler.php";
+    session_start();
+    $db = new dbHandler();
 
-   if(isset($_POST["submit"])) {
-    $username = $_POST['naam'];
-    $password = $_POST['password'];
-    $repeat_password = $_POST['repeat_password'];
+    if (isset($_POST["submit"])) {
+        $username = $_POST['naam'];
+        $password = $_POST['password'];
+        $repeat_password = $_POST['repeat_password'];
 
-    if (empty($username) || empty($password) || empty($repeat_password)) {
-        echo "Error: Please fill in all the fields";
-        exit;
+        if (empty($username) || empty($password) || empty($repeat_password)) {
+            echo "Error: Please fill in all the fields";
+            exit;
+        }
+
+        if ($password !== $repeat_password) {
+            echo "Error: Passwords do not match";
+            exit;
+        }
+
+        $result = $db->createUser($username, $password);
+        if ($result) {
+            $_SESSION['naam'] = $username;
+            $_SESSION['password'] = $password;
+            header("Location: account.php");
+            exit;
+        } else {
+            echo "Error: Failed to register user";
+        }
     }
-
-    if ($password !== $repeat_password) {
-        echo "Error: Passwords do not match";
-        exit;
-    }
-
-    $result = $db->createUser($username, $password);
-    if ($result) {
-        $_SESSION['naam'] = $username; 
-        $_SESSION['password'] = $password;
-        header("Location: account.php");
-        exit;
-    } else {
-        echo "Error: Failed to register user";
-
-    }
-}
-?>
+    ?>
     <div class="container">
         <header>Registreer hier!</header>
         <form action="" method="post">

@@ -8,51 +8,62 @@ body{
     background-color: #e0e7ea;
 }
 
-.navbar {
-    background-color: #1D1D1D;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100px;
-    padding: 0 20px;
-}
-
-.navbar-logo img {
-    height: 40px;
-}
-
-.navbar-links {
+.menu {
+    width: 30px;
     list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+    display: none;
+}
+
+.logo {
+    width: 150px;
+    cursor: pointer;
+    margin: 30px 0px;
+}
+
+.navbar {
+    width: 100%;
     display: flex;
     align-items: center;
-    margin: 0;
-    padding: 0;
+    background-color: #1d1d1d;
+    height: 75px;
 }
 
-.navbar-links li {
-    margin-left: 20px;
+nav {
+    flex: 1;
+    text-align: right;
 }
 
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
 
-.navbar-links li a {
-    color: #FFFFFF;
+nav ul li {
+    list-style: none;
+    margin-left: 30px;
+}
+
+nav ul li a {
     text-decoration: none;
+    color: #FFFFFF;
+    font-size: 14px;
 }
 
-.navbar-links li a.button {
+nav ul li a:hover {
+    color: #EE4D2F;
+}
+
+nav ul li a.button {
     background-color: #EE4D2F;
     padding: 10px 20px;
     border-radius: 5px;
 }
 
-.navbar-links li a.button:hover {
+nav ul li a.button:hover {
     opacity: 0.8;
     cursor: pointer;
-}
-
-.navimg {
-    width: 200px;
-    height: 80px;
 }
 
 .tekst h1 {
@@ -118,11 +129,135 @@ footer ul li a:hover {
     opacity: 0.8;
 }
 
-.menu {
-    width: 30px;
-    list-style: none;
-    display: inline-block;
-    margin-right: 10px;
-    display: none;
+
+/*phone*/
+@media only screen and (max-width:480px) {
+    .navbar {
+        height: auto;
+    }
+
+    nav {
+        width: 100%;
+        background-color: #1d1d1d;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 2;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: right;
+        justify-content: right;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    #menulist {
+        overflow: hidden;
+        transition: 1s;
+    }
 }
 
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .navbar {
+        height: auto;
+    }
+
+    nav {
+        width: 100%;
+        background-color: #1d1d1d;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 2;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: right;
+        justify-content: right;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    #menulist {
+        overflow: hidden;
+        transition: 1s;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .navbar {
+        height: auto;
+    }
+
+    nav {
+        width: 100%;
+        background-color: #1d1d1d;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 2;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: right;
+        justify-content: right;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    #menulist {
+        overflow: hidden;
+        transition: 1s;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    nav ul li {
+        margin-top: -10px;
+        padding-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+
+    nav ul li {
+        margin-top: -10px;
+        padding-right: 20px;
+    }
+}
