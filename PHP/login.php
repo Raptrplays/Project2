@@ -16,7 +16,7 @@
 <div class="navbar">
         <img src="../images/1280px-PVV_logo_(2006–present).svg.png" class="logo" alt="logo">
         <div class="header-menu">
-            <img src="images/menu.png" alt="menu" onclick="togglemenu()" class="menu">
+            <img src="../images/menu.png" alt="menu" onclick="togglemenu()" class="menu">
         </div>
         <nav>
             <ul id="menulist">
