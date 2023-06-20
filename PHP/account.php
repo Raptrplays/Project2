@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +29,7 @@
                 <li><a href="../doneren.php">Doneren</a></li>
                 <li><a href="../contact.php">Contact</a></li>
                 <?php
-                session_start();
+                
                 if (isset($_SESSION['naam'])) {
                     echo '<li><a href="account.php" class="button">Mijn account</a></li>';
                 } else if ((isset($_POST['delete']))) {
@@ -40,11 +42,20 @@
         </nav>
     </div>
 
+
     <?php
+    require "Dbhandler.php";
+    session_start();
+    $db = new dbHandler();
+    
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
+
+        $GebruikersId = $db->getGebruikersId($username, $password);
+
         $GebruikersId = $_SESSION['GebruikersId'];
+        var_dump($username, $password, $GebruikersId);
     ?>
 
         <div class="container">

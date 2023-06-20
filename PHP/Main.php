@@ -42,23 +42,28 @@
         $repeat_password = $_POST['repeat_password'];
 
         if (empty($username) || empty($password) || empty($repeat_password)) {
-            echo "Error: Please fill in all the fields";
+            echo "Vul alles in";
             exit;
         }
 
         if ($password !== $repeat_password) {
-            echo "Error: Passwords do not match";
+            echo "Passwords zijn niet gelijk";
             exit;
         }
 
         $result = $db->createUser($username, $password);
+        
+   
+
+
         if ($result) {
             $_SESSION['naam'] = $username;
             $_SESSION['password'] = $password;
+
             header("Location: account.php");
             exit;
         } else {
-            echo "Error: Failed to register user";
+            echo "Error!!!";
         }
     }
     ?>
