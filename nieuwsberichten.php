@@ -49,7 +49,6 @@ session_start();
     </div>
 
     <?php
-    session_start();
     if (isset($_POST['submit'], $_POST['GebruikersId'], $_POST['NieuwsId'])) {
         $DBreactie->reactieMaken($_POST['Comment'], $_POST['GebruikersId'], $_POST['NieuwsId']);
     } else if (isset($_POST['delete'])) {
@@ -81,6 +80,7 @@ session_start();
                                 <td><?= $comment["Naam"] ?></td>
                                 <td><?= $comment["Comment"] ?></td>
                                 <td>
+                                    <div class="flex">
                                     <form method="POST" action="aanpassen.php">
                                         <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
                                         <button type="submit">
@@ -93,16 +93,21 @@ session_start();
                                             <p>Reactie verwijderen</p>
                                         </button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
+
                         <br>
+
                     <?php
                     }
                     ?>
                 </div>
                 <br>
-
+<?php
+if(isset($_SESSION['GebruikersId'])){
+    ?>
 
                 <form method='post' id="comment-form" action="nieuwsberichten.php">
                     <div class="form-group">
@@ -113,6 +118,9 @@ session_start();
                     </div>
                     <button type="submit" name="submit" value="submit">Plaats reactie</button>
                 </form>
+                <?php
+}
+?>
                 <br>
                 <hr>
             </div>
@@ -122,31 +130,31 @@ session_start();
     </div>
 
 
-        <footer>
-            <div class="footerlinks">
-                <ul>
-                    <li><a href="https://twitter.com/geertwilderspvv">Twitter</a></li>
-                    <li><a href="https://www.geertwilders.nl/">Geertwilders.nl</a></li>
-                    <li><a href="https://www.haagsepvv.nl/">PVVDenHaag</a></li>
-                    <li><a href="https://www.pvveerstekamer.nl/">PVVEersteKamer</a></li>
-                </ul>
-            </div>
-        </footer>
+    <footer>
+        <div class="footerlinks">
+            <ul>
+                <li><a href="https://twitter.com/geertwilderspvv">Twitter</a></li>
+                <li><a href="https://www.geertwilders.nl/">Geertwilders.nl</a></li>
+                <li><a href="https://www.haagsepvv.nl/">PVVDenHaag</a></li>
+                <li><a href="https://www.pvveerstekamer.nl/">PVVEersteKamer</a></li>
+            </ul>
+        </div>
+    </footer>
 
-        <script>
-    var menulist = document.getElementById("menulist");
+    <script>
+        var menulist = document.getElementById("menulist");
 
-    menulist.style.maxHeight = "0px";
-
-    function togglemenu() {
-      if (menulist.style.maxHeight == "0px") {
-        menulist.style.maxHeight = "300px";
-      } else {
         menulist.style.maxHeight = "0px";
-      }
 
-    }
-  </script>
+        function togglemenu() {
+            if (menulist.style.maxHeight == "0px") {
+                menulist.style.maxHeight = "300px";
+            } else {
+                menulist.style.maxHeight = "0px";
+            }
+
+        }
+    </script>
 </body>
 
 </html>

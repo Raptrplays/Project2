@@ -12,8 +12,9 @@ class dbHandler
             $statement->bindParam(":naam", $naam, PDO::PARAM_STR);
             $statement->bindParam(":password", $password, PDO::PARAM_STR);
             $statement->execute();
+            $id = $pdo->lastInsertId();
     
-            return true;
+            return $id;
         } catch (PDOException $e) {
             var_dump($e);
             return false;
