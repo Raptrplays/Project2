@@ -52,7 +52,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #EE4D2F;
+    opacity: 0.8;
 }
 
 nav ul li a.button {
