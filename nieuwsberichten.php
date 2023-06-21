@@ -76,23 +76,30 @@ session_start();
                     foreach ($comments as $comment) {
                     ?>
                         <table>
-                            <tr>
+                            <tr> 
                                 <td><?= $comment["Naam"] ?></td>
                                 <td><?= $comment["Comment"] ?></td>
                                 <td>
                                     <div class="flex">
-                                    <form method="POST" action="aanpassen.php">
-                                        <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
-                                        <button type="submit">
-                                            <p>Reactie aanpassen</p>
-                                        </button>
-                                    </form>
-                                    <form method="POST" action="nieuwsberichten.php">
-                                        <input type="hidden" name="CommentId" value="<?= $comment['CommentId'] ?>" />
-                                        <button type="submit" name="delete">
-                                            <p>Reactie verwijderen</p>
-                                        </button>
-                                    </form>
+                                        <?php
+                                        if (($_SESSION['naam']) == $comment["Naam"]) {
+                                        ?>
+                                            <form method="POST" action="aanpassen.php">
+                                                <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
+                                                <button type="submit">
+                                                    <p>Reactie aanpassen</p>
+                                                </button>
+                                            </form>
+                                            <form method="POST" action="nieuwsberichten.php">
+                                                <input type="hidden" name="CommentId" value="<?= $comment['CommentId'] ?>" />
+                                                <button type="submit" name="delete">
+                                                    <p>Reactie verwijderen</p>
+                                                </button>
+                                            </form>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </div>
                                 </td>
                             </tr>
@@ -105,22 +112,22 @@ session_start();
                     ?>
                 </div>
                 <br>
-<?php
-if(isset($_SESSION['GebruikersId'])){
-    ?>
-
-                <form method='post' id="comment-form" action="nieuwsberichten.php">
-                    <div class="form-group">
-                        <label for="Comment">Reactie:</label>
-                        <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>" />
-                        <input type="hidden" name="GebruikersId" value="<?= ($_SESSION['GebruikersId']) ?>" />
-                        <textarea id="Comment" name="Comment" required></textarea>
-                    </div>
-                    <button type="submit" name="submit" value="submit">Plaats reactie</button>
-                </form>
                 <?php
-}
-?>
+                if (isset($_SESSION['GebruikersId'])) {
+                ?>
+
+                    <form method='post' id="comment-form" action="nieuwsberichten.php">
+                        <div class="form-group">
+                            <label for="Comment">Reactie:</label>
+                            <input type="hidden" name="NieuwsId" id="NieuwsId" value="<?= $newsItem['NieuwsId']; ?>" />
+                            <input type="hidden" name="GebruikersId" value="<?= ($_SESSION['GebruikersId']) ?>" />
+                            <textarea id="Comment" name="Comment" required></textarea>
+                        </div>
+                        <button type="submit" name="submit" value="submit">Plaats reactie</button>
+                    </form>
+                <?php
+                }
+                ?>
                 <br>
                 <hr>
             </div>
