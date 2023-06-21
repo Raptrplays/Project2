@@ -35,6 +35,14 @@
     require_once "dbHandler.php";
     session_start();
     $db = new dbHandler();
+    function destroySession() {  
+        session_unset();
+        session_destroy();
+    }
+    
+    if (isset($_POST['logout'])) {
+        destroySession();
+    }
 
     if (isset($_POST["submit"])) {
         $username = $_POST['naam'];

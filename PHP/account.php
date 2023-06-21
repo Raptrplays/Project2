@@ -4,7 +4,7 @@
 <?php
 require_once 'dbHandler.php';
 $db = new dbHandler();
-
+session_start();
 ?>
 
 <head>
@@ -33,18 +33,10 @@ $db = new dbHandler();
                 <li><a href="../doneren.php">Doneren</a></li>
                 <li><a href="../contact.php">Contact</a></li>
                 <?php
-                session_start();
                 if (isset($_SESSION['naam'])) {
                     echo '<li><a href="account.php" class="button">Mijn account</a></li>';
-                } else if ((isset($_POST['delete']))) {
-                    session_destroy();
-                } else if ((isset($_POST['logout']))) {
-                    session_unset();
-                    unset($_SESSION);
-                    session_destroy();
-                    $_SESSION = array();
-                    $_SESSION = [];
-                } else {
+                } 
+                 else {
                     echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
                 }
                 ?>
@@ -53,6 +45,7 @@ $db = new dbHandler();
     </div>
 
     <?php
+    
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
@@ -92,7 +85,7 @@ $db = new dbHandler();
                         <label for="new_username">Edit Name</label>
                         <input type="text" name="new_username" id="new_username" required>
                     </div>
-                    <input type="submit" name="submit" value="Update" class="button">
+                    <input type="submit" name="submit" id="update" value="Aanpassen" class="button">
                 </form>
                 <form action="Main.php" method="post">
                     <input type="submit" name="logout" id="logout" value="Uitloggen" class="button">
