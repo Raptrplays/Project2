@@ -47,14 +47,16 @@ class dbHandler
             $statement->bindParam(":naam", $naam, PDO::PARAM_STR);
             $statement->bindParam(":password", $password, PDO::PARAM_STR);
             $statement->execute();
-
+            
             $userRow = $statement->fetch(PDO::FETCH_ASSOC);
-
+            
             if ($userRow === false) {
                 return null; // No matching user found
             }
-    
-            return intval($userRow['GebruikersId']);
+            
+            $gebruikersId = $userRow['GebruikersId'];
+            
+            return $gebruikersId !== false ? intval($gebruikersId) : null;
         } catch (PDOException $e) {
             var_dump($e);
             return null;

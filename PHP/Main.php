@@ -52,14 +52,12 @@
         }
 
         $result = $db->createUser($username, $password);
-        
-   
-
+        $id = $db->getGebruikersId($username, $password);
 
         if ($result) {
             $_SESSION['naam'] = $username;
             $_SESSION['password'] = $password;
-
+            $_SESSION['GebruikersId'] = $id;
             header("Location: account.php");
             exit;
         } else {
