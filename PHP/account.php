@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,10 +33,18 @@ $db = new dbHandler();
                 <li><a href="../doneren.php">Doneren</a></li>
                 <li><a href="../contact.php">Contact</a></li>
                 <?php
-                
+                session_start();
                 if (isset($_SESSION['naam'])) {
                     echo '<li><a href="account.php" class="button">Mijn account</a></li>';
-                }  else {
+                } else if ((isset($_POST['delete']))) {
+                    session_destroy();
+                } else if ((isset($_POST['logout']))) {
+                    session_unset();
+                    unset($_SESSION);
+                    session_destroy();
+                    $_SESSION = array();
+                    $_SESSION = [];
+                } else {
                     echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
                 }
                 ?>
@@ -46,28 +52,11 @@ $db = new dbHandler();
         </nav>
     </div>
 
-
     <?php
-    if ((isset($_POST['delete']))) {
-        session_destroy();
-    } 
-    else if ((isset($_POST['logout']))) {
-        session_unset();
-        unset($_SESSION);
-        session_destroy();
-        $_SESSION = array();
-        $_SESSION = [];
-    }
-
-
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
-
-        $GebruikersId = $db->getGebruikersId($username, $password);
-
         $GebruikersId = $_SESSION['GebruikersId'];
-        var_dump($username, $password, $GebruikersId);
     ?>
 
         <div class="container">
