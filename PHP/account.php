@@ -48,7 +48,6 @@ $db = new dbHandler();
 
 
     <?php
-<<<<<<< HEAD
     if ((isset($_POST['delete']))) {
         session_destroy();
     } 
@@ -61,12 +60,6 @@ $db = new dbHandler();
     }
 
 
-=======
-    require "Dbhandler.php";
-    session_start();
-    $db = new dbHandler();
-    
->>>>>>> ba57c5cd6c588dd9fcda7ce7f36be7065779f703
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
