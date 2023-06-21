@@ -4,9 +4,9 @@
 <?php
 require_once 'dbHandler.php';
 $db = new dbHandler();
-var_dump($id);
 
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,9 +36,7 @@ var_dump($id);
                 session_start();
                 if (isset($_SESSION['naam'])) {
                     echo '<li><a href="account.php" class="button">Mijn account</a></li>';
-                } else if ((isset($_POST['delete']))) {
-                    session_destroy();
-                } else {
+                }  else {
                     echo '<li><a href="Main.php" class="button">Lid worden</a></li>';
                 }
                 ?>
@@ -47,6 +45,18 @@ var_dump($id);
     </div>
 
     <?php
+    if ((isset($_POST['delete']))) {
+        session_destroy();
+    } 
+    else if ((isset($_POST['logout']))) {
+        session_unset();
+        unset($_SESSION);
+        session_destroy();
+        $_SESSION = array();
+        $_SESSION = [];
+    }
+
+
     if (isset($_SESSION['naam'])) {
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
@@ -115,19 +125,19 @@ var_dump($id);
     </footer>
 
     <script>
-    var menulist = document.getElementById("menulist");
+        var menulist = document.getElementById("menulist");
 
-    menulist.style.maxHeight = "0px";
-
-    function togglemenu() {
-      if (menulist.style.maxHeight == "0px") {
-        menulist.style.maxHeight = "300px";
-      } else {
         menulist.style.maxHeight = "0px";
-      }
 
-    }
-  </script>
+        function togglemenu() {
+            if (menulist.style.maxHeight == "0px") {
+                menulist.style.maxHeight = "300px";
+            } else {
+                menulist.style.maxHeight = "0px";
+            }
+
+        }
+    </script>
 </body>
 
 </html>

@@ -26,7 +26,7 @@
                 <li><a href="../standpunten.php">Standpunten</a></li>
                 <li><a href="../doneren.php">Doneren</a></li>
                 <li><a href="../contact.php">Contact</a></li>
-                <li><a href="../Main.php" class="button">Lid worden</a></li>
+                <li><a href="Main.php" class="button">Lid worden</a></li>
             </ul>
         </nav>
     </div>
