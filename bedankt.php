@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Public/doneren.css">
+  <link rel="stylesheet" href="Public/bedankt.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;800&display=swap" rel="stylesheet">
@@ -35,43 +35,33 @@
         } else {
           echo '<li><a href="PHP/Main.php" class="button">Lid worden</a></li>';
         }
-        if (isset($_POST["submit"])) 
-        {
-          $naam = $_POST["name"];
-          $number = $_POST["amount"];
-        }
         ?>
       </ul>
     </nav>
   </div>
 
-  <section class="donation">
-    <h2>Steun ons werk met een donatie</h2>
-    <p>Help ons de vrijheid te verdedigen. Doneer nu!</p>
-    <form action="bedankt.php" method="post">
-      <div class="form-group">
-        <label for="amount">Bedrag:</label>
-        <input type="number" name="amount" min="1" step="1" required>
-      </div>
-      <div class="form-group">
-        <label for="name">Naam:</label>
-        <input type="text" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" required>
-      </div>
-      <div class="form-btn">
-        <input type="submit" value="Doneer">
-      </div>
-    </form>
-  </section>
+<div class="divcontainer">
 
-
-
-
-
-
+  <img src="images/images (1).jpg" alt="Image Description"> <img src="images/gert1.jpg" alt="Image Description"><img src="images/images (1).jpg" alt="Image Description">
+  <img src="images/gert1.jpg" alt="Image Description"><img src="images/images (1).jpg" alt="Image Description">
+  <img src="images/gert1.jpg" alt="Image Description"><img src="images/gerert.jpg" alt="Image Description"><img src="images/gerert.jpg" alt="Image Description">
+  <img src="images/images (1).jpg" alt="Image Description">
+  <img src="images/images (1).jpg" alt="Image Description">
+  <img src="images/gerert.jpg" alt="Image Description">
+  <img src="images/gert1.jpg" alt="Image Description">
+        <?php 
+     
+            $naam = $_POST["name"];
+          $number = $_POST["amount"];
+        echo "Bedankt voor de $number euro!, $naam!";
+        
+        
+        ?>
+   <img src="images/images (1).jpg" alt="Image Description">
+   <img src="images/images (1).jpg" alt="Image Description">
+   <img src="images/images (1).jpg" alt="Image Description">
+   <img src="images/images (1).jpg" alt="Image Description">
+   </div>
   <footer>
     <div class="footerlinks">
       <ul>
