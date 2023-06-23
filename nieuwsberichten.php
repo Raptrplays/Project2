@@ -82,7 +82,7 @@ session_start();
                                 <td>
                                     <div class="flex">
                                         <?php
-                                        if (($_SESSION['naam']) == $comment["Naam"]) {
+                                        if (isset($_SESSION['naam']) && ($_SESSION['naam']) == $comment["Naam"]) {
                                         ?>
                                             <form method="POST" action="aanpassen.php">
                                                 <input type="hidden" name="commentId" value="<?= $comment['CommentId'] ?>" />
